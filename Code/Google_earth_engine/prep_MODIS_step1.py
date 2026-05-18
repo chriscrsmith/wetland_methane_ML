@@ -23,17 +23,15 @@ days_per_month = config.days_per_month
 
 def fill_gaps(gappy_data):
     def interpolate_nan_time(arr):
-        # Interpolate each (i, j) pixel across time
         def interpolate_series(x):
             s = pd.Series(x)
             return s.interpolate(method='linear', limit_direction='both').fillna(method='bfill').fillna(method='ffill').to_numpy()  # tries birectional, but then relies on forward in case it's the first time point
         
         return np.apply_along_axis(interpolate_series, axis=0, arr=arr)
     def interpolate_nan_rows(arr):
-        # Interpolates each row independently
         return np.apply_along_axis(
             lambda row: pd.Series(row).interpolate(limit_direction='both').to_numpy(),
-            axis=1,  # axis=1 → rows
+            axis=1,
             arr=arr
         )
     def interpolate_nan_columns(arr):
@@ -57,6 +55,7 @@ def random_flip_rotate(image):
     k = random.randint(0, 3)
     image = np.rot90(image, k=k, axes=(1, 2))
     return image
+
 
 ### subset for current rep                                                                         
 n = 24
@@ -116,6 +115,6 @@ for site in range(rep*n, (rep*n)+n):
         fp2 = folder + "/tile_" + str(i) + ".npy"
         np.save(fp2, tile)    
         
-    ## write sums
+    ## write
     fp3 = folder + "/sums.npy"
     np.save(fp3, sums)

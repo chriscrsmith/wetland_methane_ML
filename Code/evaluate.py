@@ -300,6 +300,30 @@ mse_valid = np.sqrt(np.mean(ses_valid))
 # including sites with missing months
 mse_missing = np.sqrt(np.mean(ses_missing))
 
+### bootstrap
+rng = np.random.default_rng(12345)   # shared seed across all models
+b = 10000  # don't change this, either.
+
+s = len(ses_valid)
+bs_valid = []
+for i in range(b):
+    indices = rng.choice(s, size=s, replace=True)
+    new_ses = np.array(ses_valid)[indices]
+    bs_valid.append(np.sqrt(np.mean(new_ses)))
+#
+#lower_valid, upper_valid = np.percentile(bs_valid, [2.5, 97.5])
+np.save(config.fp_eval + "/bootstrap_valid", np.array(bs_valid))
+
+s = len(ses_missing)
+bs_missing = []
+for i in range(b):
+    indices = rng.choice(s, size=s, replace=True)
+    new_ses = np.array(ses_missing)[indices]
+    bs_missing.append(np.sqrt(np.mean(new_ses)))
+#
+#lower_missing, upper_missing = np.percentile(bs_missing, [2.5, 97.5])
+np.save(config.fp_eval + "/bootstrap_missing", np.array(bs_missing))
+
 ### r2
 
 # complete sites
@@ -333,7 +357,7 @@ ax.set_ylim(lim_min,lim_max)
 x = np.linspace(lim_min,lim_max, 1000)
 ax.plot([lim_max*-2,lim_max*2], [lim_max*-2,lim_max*2], color='lightgrey',linestyle='--')
 ax.text(-10, 225,
-        'RMSE (complete sites) = %0.1f\nRMSE (all sites) = %0.1f' % (mse_valid, mse_missing),
+        'Valid sites RMSE = %0.1f\nAll sites RMSE = %0.1f' % (mse_valid, mse_missing),
         fontsize = 12, ha='left', va='top')
 
 # all sites (bottom layer)
@@ -365,4 +389,4 @@ legend_handles = [
 plt.legend(handles=legend_handles, loc='upper left', fontsize=12)
 
 plt.show()
-fig.savefig("evaluation.pdf", bbox_inches='tight')
+fig.savefig(config.fp_eval + '/scatter.pdf', bbox_inches='tight')

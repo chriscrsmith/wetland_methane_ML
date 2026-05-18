@@ -64,7 +64,7 @@ Z_obs = Z_obs[:,:,1:3]  # just lat, long to match formatting of sims
 Z_vars_obs = Z_vars_obs[1:3]
 
 # site ID 
-ids = np.arange(X_obs.shape[0])  # this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_obs.shape[0])
 
 ### Separate out F_CH4 (into variable "M")
 
@@ -199,7 +199,7 @@ X_stats_sim = data0['X_stats']
 Y_stats_sim = data0['Y_stats']
 
 # site ID 
-ids = np.arange(X_sim.shape[0])  # this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_sim.shape[0])
 
 ### filter eddy covariance sites from TEM
 
@@ -521,7 +521,7 @@ Z_obs = Z_obs[:,:,1:3]  # just lat, long to match formatting of sims
 Z_vars_obs = Z_vars_obs[1:3]
 
 # site ID 
-ids = np.arange(X_obs.shape[0])  # this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_obs.shape[0])
 
 ### Separate out F_CH4 (into variable "M")
 

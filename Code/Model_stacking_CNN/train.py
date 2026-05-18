@@ -58,7 +58,7 @@ Z_vars_obs = data0['Z_vars']
 X_stats = data0['X_stats']
 Y_stats = data0['Y_stats']
 I_stats = data0['I_stats']
-ids = np.arange(X_obs.shape[0])  # site ID: this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_obs.shape[0])
 
 ### Separate out F_CH4 (into variable "M")
 ### create new var
@@ -173,7 +173,7 @@ Y_vars_sim = data0['Y_vars']
 Z_vars_sim = data0['Z_vars']
 X_stats_sim = data0['X_stats']
 Y_stats_sim = data0['Y_stats']
-ids = np.arange(X_sim.shape[0])  # this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_sim.shape[0])
 
 ### filter eddy covariance sites from TEM
 ### get obs grid cells

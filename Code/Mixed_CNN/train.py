@@ -56,7 +56,7 @@ Y_stats = data0['Y_stats']
 I_stats = data0['I_stats']
 
 # site ID 
-ids = np.arange(X_obs.shape[0])  # this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_obs.shape[0])
 
 ### unnormalize
 
@@ -213,7 +213,7 @@ X_stats_sim = data0['X_stats']
 Y_stats_sim = data0['Y_stats']
 
 # site ID 
-ids = np.arange(X_sim.shape[0])  # this notebook is splitting by site ID—no option for random split
+ids = np.arange(X_sim.shape[0])
 
 ### unnormalize
 

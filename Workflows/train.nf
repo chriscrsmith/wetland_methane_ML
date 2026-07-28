@@ -110,7 +110,7 @@ process Train {
 
     script:
     """
-    python ${params.repo}/Code/${params.repo}/train.py \
+    python ${params.repo}/Code/${params.model_version}/train.py \
         ${test_index} \
         ${rep}
     """
